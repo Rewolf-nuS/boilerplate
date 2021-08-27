@@ -1,0 +1,9 @@
+@use '../mixin/' as m;
+
+.u-invisible-sp {
+  display: none;
+
+  @include m.responsive(sm) {
+    display: block;
+  }
+}
