@@ -17,6 +17,7 @@
     "browser-sync": "^2.27.5",
     "cssnano": "^5.0.6",
     "del": "^6.0.0",
+    "fibers": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-changed": "^4.0.3",
     "gulp-concat": "^2.6.1",

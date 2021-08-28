@@ -11,6 +11,7 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const Fiber = require('fibers');
 
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
@@ -57,7 +58,9 @@ const ejsTask = () => {
 
 const scssTask = () => {
   return src(files.scssPath, { sourcemaps: true })
-    .pipe(sass())
+    .pipe(sass({
+      fiber: Fiber
+    }).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(dest('dist/css', { sourcemaps: '.' }))
     .pipe(scssTaskMin());
