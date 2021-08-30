@@ -1,2 +1,10 @@
 # Gulp-ejs-sass-boilerplate  
-made by Minaki-web
+made by Minaki-web  
+
+## Installation  
+```
+$ git clone https://github.com/Minaki-web/boilerplate  
+$ npm i  
+$ npm run build/all  
+$ npm start
+```
