@@ -28,7 +28,7 @@ const files = {
 };
 
 const cleanFolder = (done) => {
-  del.sync(['dist/**']);
+  del.sync(['dist/**', '!'+'dist/img/**']);
 
   done();
 };
