@@ -127,6 +127,9 @@ const watchTask = (done) => {
 };
 
 exports.default = series(serve, watchTask);
-exports.build = series(cleanFolder, parallel(ejsTask, scssTask, jsTask, imgTask));
-exports.imgpress = series(imgTask);
+
+exports.build = series(parallel(ejsTask, scssTask, jsTask));
+exports.buildall = series(cleanFolder, parallel(ejsTask, scssTask, jsTask), imgTask);
+exports.buildimg = series(imgTask);
+
 exports.resetimg = series(cleanImg);

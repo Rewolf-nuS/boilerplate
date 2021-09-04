@@ -5,8 +5,9 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "npx gulp",
-    "build/all": "npx gulp build",
-    "build/img": "npx gulp imgpress",
+    "build": "npx gulp build",
+    "build/all": "npx gulp buildall",
+    "build/img": "npx gulp buildimg",
     "reset/img": "npx gulp resetimg"
   },
   "keywords": [],
