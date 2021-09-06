@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<%- include ('./_components/_head.ejs') %>
+<%- include ('./_data.ejs'); %>
+<%
+  const meta = data();
+  const page = "home";
+%>
+<%- include ('./_components/_head', {meta: meta.pageMeta[page]}) %>
 
 <body>
   <header>
