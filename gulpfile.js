@@ -9,6 +9,7 @@ const htmlbeautify = require('gulp-html-beautify');
 
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
+const gcmq = require("gulp-group-css-media-queries");
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const Fiber = require('fibers');
@@ -28,7 +29,7 @@ const files = {
 };
 
 const cleanFolder = (done) => {
-  del.sync(['dist/**', '!'+'dist/img/**']);
+  del.sync(['dist/**', '!' + 'dist/img/**']);
 
   done();
 };
@@ -58,9 +59,12 @@ const ejsTask = () => {
 
 const scssTask = () => {
   return src(files.scssPath, { sourcemaps: true })
-    .pipe(sass({
-      fiber: Fiber
-    }).on('error', sass.logError))
+    .pipe(
+      sass({
+        fiber: Fiber,
+      }).on('error', sass.logError)
+    )
+    .pipe(gcmq())
     .pipe(postcss([autoprefixer()]))
     .pipe(dest('dist/css', { sourcemaps: '.' }))
     .pipe(scssTaskMin());
@@ -69,6 +73,7 @@ const scssTask = () => {
 const scssTaskMin = () => {
   return src(files.scssPath)
     .pipe(sass())
+    .pipe(gcmq())
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/css'));
