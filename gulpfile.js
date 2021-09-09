@@ -9,7 +9,7 @@ const htmlbeautify = require('gulp-html-beautify');
 
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
-const gcmq = require("gulp-group-css-media-queries");
+const mq = require("postcss-sort-media-queries");
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const Fiber = require('fibers');
@@ -64,17 +64,17 @@ const scssTask = () => {
         fiber: Fiber,
       }).on('error', sass.logError)
     )
-    .pipe(gcmq())
-    .pipe(postcss([autoprefixer()]))
+    .pipe(postcss([mq(), autoprefixer()]))
     .pipe(dest('dist/css', { sourcemaps: '.' }))
     .pipe(scssTaskMin());
 };
 
 const scssTaskMin = () => {
   return src(files.scssPath)
-    .pipe(sass())
-    .pipe(gcmq())
-    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe( sass({
+      fiber: Fiber,
+    }).on('error', sass.logError))
+    .pipe(postcss([mq(), autoprefixer(), cssnano()]))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/css'));
 };

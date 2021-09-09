@@ -1,2 +1,11 @@
+@use '../mixin/' as m;
+
 .l-header {
+  h1 {
+    color: black;
+
+    @include m.responsive(sm) {
+      color: blue;
+    }
+  }
 }

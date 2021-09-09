@@ -23,7 +23,6 @@
     "gulp-changed": "^4.0.3",
     "gulp-concat": "^2.6.1",
     "gulp-ejs": "^5.1.0",
-    "gulp-group-css-media-queries": "^1.2.2",
     "gulp-html-beautify": "^1.0.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-plumber": "^1.2.1",
@@ -34,6 +33,7 @@
     "gulp-terser": "^2.0.1",
     "imagemin-pngquant": "^9.0.2",
     "postcss": "^8.3.5",
+    "postcss-sort-media-queries": "^3.11.12",
     "sass": "^1.35.2"
   },
   "browserslist": [
