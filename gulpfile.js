@@ -59,6 +59,7 @@ const ejsTask = () => {
 
 const scssTask = () => {
   return src(files.scssPath, { sourcemaps: true })
+    .pipe(plumber())
     .pipe(
       sass({
         fiber: Fiber,
@@ -71,6 +72,7 @@ const scssTask = () => {
 
 const scssTaskMin = () => {
   return src(files.scssPath)
+    .pipe(plumber())
     .pipe( sass({
       fiber: Fiber,
     }).on('error', sass.logError))
@@ -81,6 +83,7 @@ const scssTaskMin = () => {
 
 const jsTask = () => {
   return src(files.jsPath, { sourcemaps: true })
+    .pipe(plumber())
     .pipe(concat('main.js'))
     .pipe(terser())
     .pipe(dest('dist/js', { sourcemaps: '.' }));
