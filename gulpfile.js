@@ -4,12 +4,12 @@ const del = require('del');
 const rename = require('gulp-rename');
 const plumber = require('gulp-plumber');
 
-const ejs = require('gulp-ejs');
+const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
 
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
-const mq = require("postcss-sort-media-queries");
+const mq = require('postcss-sort-media-queries');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const Fiber = require('fibers');
@@ -22,10 +22,10 @@ const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
 const files = {
-  ejsPath: ['src/ejs/**/*.ejs', '!' + 'src/ejs/**/_*.ejs'],
+  pugPath: ['src/pug/**/*.pug', '!' + 'src/pug/**/_*.pug'],
   scssPath: 'src/scss/**/*.scss',
   jsPath: 'src/js/**/*.js',
-  imgPath: 'src/img/**',
+  imgPath: 'src/img/**'
 };
 
 const cleanFolder = (done) => {
@@ -39,10 +39,15 @@ const cleanImg = (done) => {
   done();
 };
 
-const ejsTask = () => {
-  return src(files.ejsPath)
+const pugTask = () => {
+  return src(files.pugPath)
     .pipe(plumber())
-    .pipe(ejs())
+    .pipe(
+      pug({
+        pretty: true,
+        basedir: './src/pug'
+      })
+    )
     .pipe(
       htmlbeautify({
         indent_size: 2,
@@ -50,10 +55,9 @@ const ejsTask = () => {
         max_preserve_newlines: 0,
         preserve_newlines: false,
         indent_inner_html: false,
-        extra_liners: [],
+        extra_liners: []
       })
     )
-    .pipe(rename({ extname: '.html' }))
     .pipe(dest('dist/'));
 };
 
@@ -62,7 +66,7 @@ const scssTask = () => {
     .pipe(plumber())
     .pipe(
       sass({
-        fiber: Fiber,
+        fiber: Fiber
       }).on('error', sass.logError)
     )
     .pipe(postcss([mq(), autoprefixer()]))
@@ -73,9 +77,11 @@ const scssTask = () => {
 const scssTaskMin = () => {
   return src(files.scssPath)
     .pipe(plumber())
-    .pipe( sass({
-      fiber: Fiber,
-    }).on('error', sass.logError))
+    .pipe(
+      sass({
+        fiber: Fiber
+      }).on('error', sass.logError)
+    )
     .pipe(postcss([mq(), autoprefixer(), cssnano()]))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/css'));
@@ -95,14 +101,14 @@ const imgTask = () => {
     .pipe(
       imagemin([
         pngquant({
-          quality: [0.7, 0.85],
+          quality: [0.7, 0.85]
         }),
         imagemin.mozjpeg({ quality: 80, progressive: true }),
         imagemin.optipng(),
         imagemin.svgo({
-          plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
+          plugins: [{ removeViewBox: false }, { cleanupIDs: false }]
         }),
-        imagemin.gifsicle({ optimizationLevel: 3 }),
+        imagemin.gifsicle({ optimizationLevel: 3 })
       ])
     )
     .pipe(dest('dist/img'));
@@ -111,9 +117,9 @@ const imgTask = () => {
 const serve = (done) => {
   browsersync.init({
     server: {
-      baseDir: './dist',
+      baseDir: './dist'
     },
-    notify: false,
+    notify: false
   });
 
   done();
@@ -126,7 +132,7 @@ const reload = (done) => {
 };
 
 const watchTask = (done) => {
-  watch(files.ejsPath[0], series(ejsTask, reload));
+  watch(files.pugPath[0], series(pugTask, reload));
   watch(files.scssPath, series(scssTask, reload));
   watch(files.jsPath, series(jsTask, reload));
   watch(files.imgPath, series(imgTask, reload));
@@ -136,8 +142,8 @@ const watchTask = (done) => {
 
 exports.default = series(serve, watchTask);
 
-exports.build = series(parallel(ejsTask, scssTask, jsTask));
-exports.buildall = series(cleanFolder, parallel(ejsTask, scssTask, jsTask), imgTask);
+exports.build = series(parallel(pugTask, scssTask, jsTask));
+exports.buildall = series(cleanFolder, parallel(pugTask, scssTask, jsTask), imgTask);
 exports.buildimg = series(imgTask);
 
 exports.resetimg = series(cleanImg);
