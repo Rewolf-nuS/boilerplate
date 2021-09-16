@@ -3,6 +3,8 @@ const browsersync = require('browser-sync').create();
 const del = require('del');
 const rename = require('gulp-rename');
 const plumber = require('gulp-plumber');
+const changed = require('gulp-changed');
+const notify = require('gulp-notify');
 
 const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
@@ -17,31 +19,33 @@ const Fiber = require('fibers');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 
-const changed = require('gulp-changed');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
-const files = {
-  pugPath: ['src/pug/**/*.pug', '!' + 'src/pug/**/_*.pug'],
-  scssPath: 'src/scss/**/*.scss',
-  jsPath: 'src/js/**/*.js',
-  imgPath: 'src/img/**'
+const path = {
+  pugSrc: ['src/pug/**/*.pug', '!' + 'src/pug/**/_*.pug'],
+  pugDist: ['dist'],
+  scssSrc: 'src/scss/**/*.scss',
+  scssDist: 'dist/css',
+  jsSrc: 'src/js/**/*.js',
+  jsDist: 'dist/js',
+  imgSrc: 'src/img/**',
+  imgDist: 'dist/img',
 };
 
 const cleanFolder = (done) => {
-  del.sync(['dist/**', '!' + 'dist/img/**']);
-
+  del.sync(['dist/**']);
   done();
 };
 
 const cleanImg = (done) => {
-  del.sync(['dist/img/**']);
+  del.sync([path.imgSrc]);
   done();
 };
 
 const pugTask = () => {
-  return src(files.pugPath)
-    .pipe(plumber())
+  return src(path.pugSrc)
+    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(
       pug({
         pretty: true,
@@ -58,46 +62,47 @@ const pugTask = () => {
         extra_liners: []
       })
     )
-    .pipe(dest('dist/'));
+    .pipe(dest(path.pugDist))
 };
 
 const scssTask = () => {
-  return src(files.scssPath, { sourcemaps: true })
-    .pipe(plumber())
+  return src(path.scssSrc, { sourcemaps: true })
+    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(
       sass({
         fiber: Fiber
-      }).on('error', sass.logError)
+      })
     )
     .pipe(postcss([mq(), autoprefixer()]))
-    .pipe(dest('dist/css', { sourcemaps: '.' }))
-    .pipe(scssTaskMin());
+    .pipe(dest(path.scssDist, { sourcemaps: '.' }))
+    .pipe(scssTaskMin())
 };
 
 const scssTaskMin = () => {
-  return src(files.scssPath)
+  return src(path.scssSrc)
     .pipe(plumber())
     .pipe(
       sass({
         fiber: Fiber
-      }).on('error', sass.logError)
+      })
     )
     .pipe(postcss([mq(), autoprefixer(), cssnano()]))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(dest('dist/css'));
+    .pipe(dest(path.scssDist))
 };
 
 const jsTask = () => {
-  return src(files.jsPath, { sourcemaps: true })
-    .pipe(plumber())
+  return src(path.jsSrc, { sourcemaps: true })
+    .pipe(changed('dist/js'))
+    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(concat('main.js'))
     .pipe(terser())
-    .pipe(dest('dist/js', { sourcemaps: '.' }));
+    .pipe(dest(path.jsDist, { sourcemaps: '.' }))
 };
 
 const imgTask = () => {
-  return src(files.imgPath)
-    .pipe(changed('dist/img'))
+  return src(path.imgSrc)
+    .pipe(changed(path.imgSrc))
     .pipe(
       imagemin([
         pngquant({
@@ -111,7 +116,7 @@ const imgTask = () => {
         imagemin.gifsicle({ optimizationLevel: 3 })
       ])
     )
-    .pipe(dest('dist/img'));
+    .pipe(dest(path.imgDist));
 };
 
 const serve = (done) => {
@@ -119,6 +124,7 @@ const serve = (done) => {
     server: {
       baseDir: './dist'
     },
+    open: false,
     notify: false
   });
 
@@ -132,20 +138,19 @@ const reload = (done) => {
 };
 
 const watchTask = (done) => {
-  watch(files.pugPath[0], series(pugTask, reload));
-  watch(files.scssPath, series(scssTask, reload));
-  watch(files.jsPath, series(jsTask, reload));
-  watch(files.imgPath, series(imgTask, reload));
+  watch(path.pugSrc[0], series(pugTask, reload));
+  watch(path.scssSrc, series(scssTask, reload));
+  watch(path.jsSrc, series(jsTask, reload));
+  watch(path.imgSrc, series(imgTask, reload));
 
   done();
 };
 
-exports.default = series(serve, watchTask);
+exports.default = series(parallel(pugTask, scssTask, jsTask), serve, watchTask);
 
 exports.watch = watchTask;
 
-exports.build = series(parallel(pugTask, scssTask, jsTask));
-exports.buildall = series(cleanFolder, parallel(pugTask, scssTask, jsTask), imgTask);
-exports.buildimg = series(imgTask);
+exports.build = series(cleanFolder, parallel(pugTask, scssTask, jsTask), imgTask);
 
-exports.resetimg = series(cleanImg);
+exports.buildimg = imgTask;
+exports.resetimg = cleanImg;

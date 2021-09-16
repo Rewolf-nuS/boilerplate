@@ -7,7 +7,6 @@
     "start": "npx gulp",
     "watch": "npx gulp watch",
     "build": "npx gulp build",
-    "build/all": "npx gulp buildall",
     "build/img": "npx gulp buildimg",
     "reset/img": "npx gulp resetimg"
   },
@@ -25,6 +24,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-html-beautify": "^1.0.1",
     "gulp-imagemin": "^7.1.0",
+    "gulp-notify": "^4.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.0",
     "gulp-pug": "^5.0.0",

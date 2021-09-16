@@ -2,20 +2,12 @@ include mixin/_head.pug
 
 doctype html
 html
-  +head('Home')
+  +head()
   body
-    header.l-header
-      h1 Welcome
-
-      nav
-        ul
-          li
-            a(href="index.html") Home
-          li
-            a(href="./sample.html") Sample
+    include ./inc/_header.pug
 
     main.l-main
 
-    footer.l-footer
+    include ./inc/_footer.pug
 
   script(src="./js/main.js")
