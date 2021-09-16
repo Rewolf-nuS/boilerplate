@@ -142,6 +142,8 @@ const watchTask = (done) => {
 
 exports.default = series(serve, watchTask);
 
+exports.watch = watchTask;
+
 exports.build = series(parallel(pugTask, scssTask, jsTask));
 exports.buildall = series(cleanFolder, parallel(pugTask, scssTask, jsTask), imgTask);
 exports.buildimg = series(imgTask);
