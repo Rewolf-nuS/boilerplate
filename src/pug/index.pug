@@ -1,13 +1,14 @@
-include mixin/_head.pug
+extends ./include/layout/_layout
+append value
+  - const title = "Home";
+  - const description = "";
+  - const path = ".";
 
-doctype html
-html
-  +head()
-  body
-    include ./inc/_header.pug
+block header
+  include include/layout/_header
 
-    main.l-main
+block main
+  include include/pages/_main-index
 
-    include ./inc/_footer.pug
-
-  script(src="./js/main.js")
+block footer
+  include include/layout/_footer

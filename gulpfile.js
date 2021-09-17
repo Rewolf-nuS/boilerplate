@@ -33,6 +33,11 @@ const path = {
   imgDist: 'dist/img',
 };
 
+const copyFile = () => {
+  return src(['src/*.*'])
+    .pipe(dest('dist/'))
+}
+
 const cleanFolder = (done) => {
   del.sync(['dist/**']);
   done();
@@ -127,13 +132,11 @@ const serve = (done) => {
     open: false,
     notify: false
   });
-
   done();
 };
 
 const reload = (done) => {
   browsersync.reload();
-
   done();
 };
 
@@ -146,11 +149,11 @@ const watchTask = (done) => {
   done();
 };
 
-exports.default = series(parallel(pugTask, scssTask, jsTask), serve, watchTask);
+exports.default = series(parallel(copyFile, pugTask, scssTask, jsTask), serve, watchTask);
 
 exports.watch = watchTask;
 
-exports.build = series(cleanFolder, parallel(pugTask, scssTask, jsTask), imgTask);
+exports.build = series(cleanFolder, parallel(copyFile, pugTask, scssTask, jsTask), imgTask);
 
 exports.buildimg = imgTask;
 exports.resetimg = cleanImg;
