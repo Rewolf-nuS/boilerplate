@@ -5,6 +5,6 @@ made by Minaki-web
 ```
 $ git clone https://github.com/Minaki-web/boilerplate  
 $ npm i  
-$ npm run build/all  
+$ npm run build  
 $ npm start
 ```
