@@ -8,6 +8,7 @@
     "watch": "npx gulp watch",
     "build": "npx gulp build",
     "build/img": "npx gulp buildimg",
+    "reset": "npx gulp reset",
     "reset/img": "npx gulp resetimg"
   },
   "author": "Minaki-web",

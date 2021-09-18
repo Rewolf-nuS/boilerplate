@@ -44,7 +44,8 @@ const watchTask = (done) => {
 };
 
 exports.default = series(parallel(copyFile, pugTask, scssTask, jsTask), serve, watchTask);
-
 exports.watch = watchTask;
-
 exports.build = series(cleanFolder, parallel(copyFile, pugTask, scssMinify, jsTask, imgTask));
+exports.buildimg = imgTask;
+exports.reset = cleanFolder;
+exports.resetImg = cleanImg;
