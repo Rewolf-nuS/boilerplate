@@ -10,9 +10,8 @@
     "build/img": "npx gulp buildimg",
     "reset/img": "npx gulp resetimg"
   },
-  "keywords": [],
   "author": "Minaki-web",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "browser-sync": "^2.27.5",

@@ -1,11 +1,13 @@
+@use '../setting/' as *;
+
 html {
   font-size: 62.5%;
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: $font-family;
   font-size: 1.6em;
   font-weight: 500;
 
-  color: var(--primary-color);
+  color: $primary-color;
 }

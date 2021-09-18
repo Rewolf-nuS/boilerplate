@@ -1,15 +1,13 @@
 extends ./helpers/layout/_layout
 
 block value
-  - const title = "Home";
-  - const description = "";
   - const path = ".";
 
 block header
-  include components/_header
+  include components/header/_header
 
 block main
-  include components/pages/_index
+  include components/main/_index
 
 block footer
-  include components/_footer
+  include components/footer/_footer

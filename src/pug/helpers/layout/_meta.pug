@@ -3,25 +3,25 @@ meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
 //- Required Meta Tags
 meta(name='description', content=`${description}`)
-//- meta(property="og:title" content=`${title}`)
-//- meta(property="og:type" content="website")
-//- meta(property="og:url" content=`${domain}`)
-//- meta(property='og:locale', content='ja_JP')
-//- meta(property="og:site_name" content=`${title}`)
-//- meta(property="og:description" content=`${description}`)
-//- meta(property="og:image" content=`${ogImage}`)
+meta(property="og:title" content=`${title ? title : ''}`)
+meta(property="og:type" content="website")
+meta(property="og:url" content=`${domain ? domain : ''}`)
+meta(property='og:locale', content='ja_JP')
+meta(property="og:site_name" content=`${title ? title : ''}`)
+meta(property="og:description" content=`${description ? description : ''}`)
+meta(property="og:image" content=`${ogImage ? ogImage : ''}`)
 
 //- twitter
-//- meta(name="twitter:card", content="summary_large_image")
-//- meta(name="twitter:site" content="website")
-//- meta(name="twitter:domain" content=`${twitterDomain}`)
-//- meta(name="twitter:title" content=`${title}`)
-//- meta(name="twitter:description" content=`${description}`)
-//- meta(name="twitter:image" content=`${ogImage}`)
+meta(name="twitter:card", content="summary_large_image")
+meta(name="twitter:site" content="website")
+meta(name="twitter:domain" content=`${twitterDomain ? twitterDomain : ''}`)
+meta(name="twitter:title" content=`${title ? title : ''}`)
+meta(name="twitter:description" content=`${description ? description : ''}`)
+meta(name="twitter:image" content=`${ogImage ? ogImage : ''}`)
 
 //- facebook
-//- meta(property="fb:admins" content=`${facebookAdmins}`)
-//- meta(property="fb:app_id" content=`${facebookAppId}`)
+meta(property="fb:admins" content=`${facebookAdmins ? facebookAdmins : ''}`)
+meta(property="fb:app_id" content=`${facebookAppId ? facebookAppId : ''}`)
 
 //- Title
-title #{title}
+title #{title ? title : 'Document'}
