@@ -1,14 +1,15 @@
-extends ./include/layout/_layout
-append value
+extends ./helpers/layout/_layout
+
+block value
   - const title = "Home";
   - const description = "";
   - const path = ".";
 
 block header
-  include include/layout/_header
+  include components/_header
 
 block main
-  include include/pages/_main-index
+  include components/pages/_index
 
 block footer
-  include include/layout/_footer
+  include components/_footer
