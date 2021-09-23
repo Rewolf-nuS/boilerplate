@@ -31,6 +31,7 @@
         font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
         background-color: #fffffe;
         color: #2d334a;
+        padding: 5px;
       }
 
       header {
@@ -43,15 +44,15 @@
       }
 
       h1 {
-        font-size: 40px;
+        font-size: clamp(30px, 3vw, 40px);
         font-weight: 750;
       }
 
       h2 {
-        font-size: 30px;
+        font-size: clamp(26px, 2vw, 30px);
         font-weight: 750;
-        margin-bottom: 1em;
-        border-bottom: 1px solid
+        margin: 1em 0;
+        border-bottom: 1px solid;
       }
 
       a {
@@ -71,16 +72,15 @@
       }
 
       .description {
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: clamp(16px, 2vw, 20px);
       }
 
       .description a {
-        font-size: 20px;
+        font-size: clamp(16px, 2vw, 20px);
       }
 
       .code-block {
-        margin-bottom: 3em
+        margin-bottom: 3em;
       }
 
       pre {
@@ -110,27 +110,33 @@
       </nav>
     </header>
     <main class="l-main">
-      <div class="description">This is a boilerplate for web-frontend developer.<br>made by <a href="https://twitter.com/1lMine">Minaki-web</a>
-      </div>
+      <div class="description"> This is a boilerplate for web-frontend developer made by <a href="https://twitter.com/1lMine">Minaki-web</a>. </div>
       <div class="code">
         <h2>Commands</h2>
         <div class="code-block">
-          <p>This is a basic command</p>
-          <pre><code>$ npm start</code></pre>
+          <p>This is a basic command.</p>
+          <pre><code>$npm start</code></pre>
         </div>
         <div class="code-block">
-          <p>You can run this command for building production</p>
-          <pre><code>$ npm run build</code></pre>
+          <p>You can run this command for building production.</p>
+          <pre><code>$npm run build</code></pre>
         </div>
         <div class="code-block">
           <p>You can run this command when you wanna only start web server and watching files.</p>
-          <pre><code>$ npm run watch</code></pre>
+          <pre><code>$npm run watch</code></pre>
         </div>
         <div class="code-block">
-          <p>You can run this command when you wanna delete "dist"</p>
-          <pre><code>$ npm run reset</code></pre>
+          <p>You can run this command when you wanna delete "dist".</p>
+          <pre><code>$npm run reset</code></pre>
         </div>
-        <p>If you want more commands, you can see them in Github.</p>
+        <p> If you want more commands, you can see them in <a href="https://github.com/Minaki-web/boilerplate">Github</a>. </p>
+      </div>
+      <div class="tips">
+        <h2>Tips</h2>
+        <ul>
+          <li>Store all images in under "src/img".</li>
+          <li>Store all favicons in under "src".</li>
+        </ul>
       </div>
     </main>
     <footer class="l-footer">
