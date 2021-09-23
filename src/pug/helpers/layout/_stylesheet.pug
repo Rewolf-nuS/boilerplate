@@ -2,11 +2,12 @@ link(rel="stylesheet", href=cssPath + "style.min.css")
 
 style(type="text/css").
   body {
-    min-height: 100vh;
-    background-color: #fffffe;
-    color: #2d334a;
     display:flex;
     flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
+    background-color: #fffffe;
+    color: #2d334a;
   }
   header {
     display: flex;
@@ -14,7 +15,7 @@ style(type="text/css").
     align-items: center;
     width: 100%;
     max-width: 1024px;
-    margin: 3rem auto;
+    margin: 3rem auto 1rem;
   }
   h1 {
     font-size: 40px;
@@ -30,8 +31,8 @@ style(type="text/css").
     color: #2d334a;
     font-size: 18px;
   }
-  a:hover {
-    text-decoration: underline;
+  li {
+    list-style: none;
   }
   main {
     width: 100%;
@@ -52,6 +53,7 @@ style(type="text/css").
   pre {
     background-color: #2d334a;
     font-family: monospace;
+    font-size: 16px;
     color: #fff;
     margin-top: 1em;
     padding: 1.2em;

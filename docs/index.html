@@ -25,11 +25,12 @@
     <link rel="stylesheet" href="./css/style.min.css">
     <style type="text/css">
       body {
-        min-height: 100vh;
-        background-color: #fffffe;
-        color: #2d334a;
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
+        font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
+        background-color: #fffffe;
+        color: #2d334a;
       }
 
       header {
@@ -38,7 +39,7 @@
         align-items: center;
         width: 100%;
         max-width: 1024px;
-        margin: 3rem auto;
+        margin: 3rem auto 1rem;
       }
 
       h1 {
@@ -58,8 +59,8 @@
         font-size: 18px;
       }
 
-      a:hover {
-        text-decoration: underline;
+      li {
+        list-style: none;
       }
 
       main {
@@ -85,6 +86,7 @@
       pre {
         background-color: #2d334a;
         font-family: monospace;
+        font-size: 16px;
         color: #fff;
         margin-top: 1em;
         padding: 1.2em;
@@ -96,7 +98,6 @@
         max-width: 1024px;
         margin: 3rem auto;
       }
-
     </style>
   </head>
   <body>
@@ -109,8 +110,7 @@
       </nav>
     </header>
     <main class="l-main">
-      <div class="description">This is a boilerplate for web-frontend developer.<br>made by <a
-          href="https://twitter.com/1lMine">Minaki-web</a>
+      <div class="description">This is a boilerplate for web-frontend developer.<br>made by <a href="https://twitter.com/1lMine">Minaki-web</a>
       </div>
       <div class="code">
         <h2>Commands</h2>
