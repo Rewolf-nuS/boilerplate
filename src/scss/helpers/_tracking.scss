@@ -1,0 +1,5 @@
+@use 'sass:math';
+
+@mixin tracking($trackingValue: 0) {
+  letter-spacing: math.div($trackingValue / 1000) * 1em;
+}
