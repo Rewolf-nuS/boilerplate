@@ -8,6 +8,7 @@ style(type="text/css").
     font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
     background-color: #fffffe;
     color: #2d334a;
+    padding: 5px;
   }
   header {
     display: flex;
@@ -18,21 +19,21 @@ style(type="text/css").
     margin: 3rem auto 1rem;
   }
   h1 {
-    font-size: 40px;
+    font-size: clamp(30px, 3vw,40px);
     font-weight: 750;
   }
   h2 {
-    font-size: 30px;
+    font-size: clamp(26px, 2vw,30px);
     font-weight: 750;
-    margin-bottom: 1em;
-    border-bottom: 1px solid
+    margin: 1em 0;
+    border-bottom: 1px solid;
+  }
+  nav ul li {
+    list-style: none;
   }
   a {
     color: #2d334a;
     font-size: 18px;
-  }
-  li {
-    list-style: none;
   }
   main {
     width: 100%;
@@ -41,14 +42,13 @@ style(type="text/css").
     margin: 0 auto;
   }
   .description {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: clamp(16px,2vw,20px);
   }
   .description a {
-    font-size: 20px;
+    font-size: clamp(16px,2vw,20px);
   }
   .code-block {
-    margin-bottom: 3em
+    margin-bottom: 3em;
   }
   pre {
     background-color: #2d334a;
