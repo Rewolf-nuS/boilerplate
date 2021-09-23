@@ -35,7 +35,7 @@
     "imagemin-pngquant": "^9.0.2",
     "postcss": "^8.3.5",
     "postcss-sort-media-queries": "^3.11.12",
-    "sass": "^1.35.2"
+    "sass": "^1.42.1"
   },
   "browserslist": [
     "last 1 version",
