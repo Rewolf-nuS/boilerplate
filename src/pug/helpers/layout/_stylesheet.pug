@@ -1,1 +1,64 @@
 link(rel="stylesheet", href=cssPath + "style.min.css")
+
+style(type="text/css").
+  body {
+    min-height: 100vh;
+    background-color: #fffffe;
+    color: #2d334a;
+    display:flex;
+    flex-direction: column;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    margin: 3rem auto;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 750;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 750;
+    margin-bottom: 1em;
+    border-bottom: 1px solid
+  }
+  a {
+    color: #2d334a;
+    font-size: 18px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  main {
+    width: 100%;
+    max-width: 1024px;
+    flex: 1;
+    margin: 0 auto;
+  }
+  .description {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .description a {
+    font-size: 20px;
+  }
+  .code-block {
+    margin-bottom: 3em
+  }
+  pre {
+    background-color: #2d334a;
+    font-family: monospace;
+    color: #fff;
+    margin-top: 1em;
+    padding: 1.2em;
+  }
+  footer {
+    text-align: center;
+    width: 100%;
+    max-width: 1024px;
+    margin: 3rem auto;
+  }

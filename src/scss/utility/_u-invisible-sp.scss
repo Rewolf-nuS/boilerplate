@@ -1,9 +1,9 @@
-@use '../mixin/' as m;
+@use '../helper/' as h;
 
 .u-invisible-sp {
   display: none;
 
-  @include m.responsive(sm) {
+  @include h.responsive(sm) {
     display: block;
   }
 }
