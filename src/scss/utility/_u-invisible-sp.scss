@@ -1,9 +1,0 @@
-@use '../helper/' as h;
-
-.u-invisible-sp {
-  display: none;
-
-  @include h.responsive(sm) {
-    display: block;
-  }
-}
