@@ -8,6 +8,7 @@ const mq = require('postcss-sort-media-queries');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const Fiber = require('fibers');
+const browsersync = require('browser-sync').create();
 
 const path = require('./path');
 
@@ -19,9 +20,10 @@ const scssTask = () => {
         fiber: Fiber
       })
     )
-    .pipe(postcss([mq(), autoprefixer()]))
+    .pipe(postcss([autoprefixer()]))
     .pipe(dest(path.dist.scss, { sourcemaps: '.' }))
-    .pipe(scssMinify());
+    .pipe(scssMinify())
+    .pipe(browsersync.stream());
 };
 
 const scssMinify = () => {

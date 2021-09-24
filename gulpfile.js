@@ -7,7 +7,7 @@ const { scssTask, scssMinify } = require('./tasks/scss.js');
 const { jsTask } = require('./tasks/javascript.js');
 const { imgTask, cleanImg } = require('./tasks/image.js');
 
-const path = require('./tasks/path.js')
+const path = require('./tasks/path.js');
 
 const copyFile = () => {
   return src(['src/*.*']).pipe(dest('dist/'));
@@ -36,7 +36,7 @@ const reload = (done) => {
 
 const watchTask = (done) => {
   watch(path.src.pug[0], series(pugTask, reload));
-  watch(path.src.scss, series(scssTask, reload));
+  watch(path.src.scss, series(scssTask));
   watch(path.src.js, series(jsTask, reload));
   watch(path.src.img, series(imgTask, reload));
 
