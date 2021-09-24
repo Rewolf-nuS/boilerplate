@@ -22,8 +22,7 @@ const scssTask = () => {
     )
     .pipe(postcss([autoprefixer()]))
     .pipe(dest(path.dist.scss, { sourcemaps: '.' }))
-    .pipe(scssMinify())
-    .pipe(browsersync.stream());
+    .pipe(scssMinify());
 };
 
 const scssMinify = () => {

@@ -36,7 +36,7 @@ const reload = (done) => {
 
 const watchTask = (done) => {
   watch(path.src.pug[0], series(pugTask, reload));
-  watch(path.src.scss, series(scssTask));
+  watch(path.src.scss, series(scssTask, reload));
   watch(path.src.js, series(jsTask, reload));
   watch(path.src.img, series(imgTask, reload));
 
