@@ -11,6 +11,10 @@
     "reset": "npx gulp reset",
     "reset/img": "npx gulp resetimg"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Minaki-web/boilerplate"
+  },
   "author": "Minaki-web",
   "license": "MIT",
   "devDependencies": {
