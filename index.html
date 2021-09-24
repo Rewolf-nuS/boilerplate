@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gulp-pug-sass Boilerplate</title>
     <style type="text/css">
+      *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+        all: unset;
+        display: revert;
+      }
+      
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      a,
+      button {
+        cursor: pointer;
+      }
+
+      ol,
+      ul {
+       list-style: none;
+      }
+      
       body {
         display: flex;
         flex-direction: column;
@@ -12,7 +33,7 @@
         font-family: 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
         background-color: #fffffe;
         color: #2d334a;
-        padding: 5px;
+        padding: 0 10px;
       }
 
       header {
@@ -21,7 +42,7 @@
         align-items: center;
         width: 100%;
         max-width: 1024px;
-        margin: 3rem auto 1rem;
+        margin: 1rem auto;
       }
 
       h1 {
