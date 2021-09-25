@@ -1,8 +1,8 @@
 const { src, dest } = require('gulp');
 const changed = require('gulp-changed');
-const del = require('del');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
+const browserSync = require('browser-sync').get('Main');
 
 const path = require('./path');
 
@@ -22,13 +22,8 @@ const imgTask = () => {
         imagemin.gifsicle({ optimizationLevel: 3 })
       ])
     )
-    .pipe(dest(path.dist.img));
-};
-
-const cleanImg = (done) => {
-  del.sync([path.imgSrc]);
-  done();
+    .pipe(dest(path.dist.img))
+    .pipe(browserSync.stream());
 };
 
 exports.imgTask = imgTask;
-exports.cleanImg = cleanImg;

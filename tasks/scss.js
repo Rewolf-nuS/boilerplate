@@ -7,36 +7,18 @@ const postcss = require('gulp-postcss');
 const mq = require('postcss-sort-media-queries');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const Fiber = require('fibers');
-const browsersync = require('browser-sync').create();
+const browserSync = require('browser-sync').get('Main');
 
 const path = require('./path');
 
 const scssTask = () => {
   return src(path.src.scss, { sourcemaps: true })
     .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-    .pipe(
-      sass({
-        fiber: Fiber
-      })
-    )
-    .pipe(postcss([autoprefixer()]))
-    .pipe(dest(path.dist.scss, { sourcemaps: '.' }))
-    .pipe(scssMinify());
-};
-
-const scssMinify = () => {
-  return src(path.src.scss)
-    .pipe(plumber())
-    .pipe(
-      sass({
-        fiber: Fiber
-      })
-    )
+    .pipe(sass())
     .pipe(postcss([mq(), autoprefixer(), cssnano()]))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(dest(path.dist.scss));
+    .pipe(dest(path.dist.scss, { sourcemaps: '.' }))
+    .pipe(browserSync.stream());
 };
 
 exports.scssTask = scssTask;
-exports.scssMinify = scssMinify;

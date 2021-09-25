@@ -1,14 +1,15 @@
-const { src, dest} = require('gulp');
+const { src, dest } = require('gulp');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
+const browserSync = require('browser-sync').get('Main');
 
 const path = require('./path');
 
 const pugTask = () => {
   return src(path.src.pug)
-    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
+    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     .pipe(
       pug({
         pretty: true,
@@ -26,6 +27,7 @@ const pugTask = () => {
       })
     )
     .pipe(dest(path.dist.pug))
+    .pipe(browserSync.stream());
 };
 
 exports.pugTask = pugTask;

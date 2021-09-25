@@ -1,25 +1,16 @@
-const { src, dest, watch, series, parallel } = require('gulp');
-const browsersync = require('browser-sync').create();
-const del = require('del');
-
-const { pugTask } = require('./tasks/pug.js');
-const { scssTask, scssMinify } = require('./tasks/scss.js');
-const { jsTask } = require('./tasks/javascript.js');
-const { imgTask, cleanImg } = require('./tasks/image.js');
+const { watch, series, parallel } = require('gulp');
+const browserSync = require('browser-sync').create('Main');
+const { pugTask } = require('./tasks/pug');
+const { scssTask } = require('./tasks/scss');
+const { jsTask } = require('./tasks/javascript');
+const { imgTask } = require('./tasks/image');
+const { copyFile } = require('./tasks/copyFile');
+const { cleanImg, cleanFolder, cleanMap } = require('./tasks/clean');
 
 const path = require('./tasks/path.js');
 
-const copyFile = () => {
-  return src(['src/*.*']).pipe(dest('dist/'));
-};
-
-const cleanFolder = (done) => {
-  del.sync(['dist/**']);
-  done();
-};
-
-const serve = (done) => {
-  browsersync.init({
+const serveTask = (done) => {
+  browserSync.init({
     server: {
       baseDir: './dist'
     },
@@ -29,23 +20,18 @@ const serve = (done) => {
   done();
 };
 
-const reload = (done) => {
-  browsersync.reload();
-  done();
-};
-
 const watchTask = (done) => {
-  watch(path.src.pug[0], series(pugTask, reload));
-  watch(path.src.scss, series(scssTask, reload));
-  watch(path.src.js, series(jsTask, reload));
-  watch(path.src.img, series(imgTask, reload));
+  watch(path.src.pug[0], series(pugTask));
+  watch(path.src.scss, series(scssTask));
+  watch(path.src.js, series(jsTask));
+  watch(path.src.img, series(imgTask));
 
   done();
 };
 
-exports.default = series(parallel(copyFile, pugTask, scssTask, jsTask), serve, watchTask);
+exports.default = series(parallel(copyFile, pugTask, jsTask, scssTask), serveTask, watchTask);
 exports.watch = watchTask;
-exports.build = series(cleanFolder, parallel(copyFile, pugTask, scssMinify, jsTask, imgTask));
+exports.build = series(cleanFolder, parallel(copyFile, pugTask, scssTask, jsTask, imgTask), cleanMap);
 exports.buildimg = imgTask;
-exports.reset = cleanFolder;
-exports.resetImg = cleanImg;
+exports.clean = cleanFolder;
+exports.cleanImg = cleanImg;
