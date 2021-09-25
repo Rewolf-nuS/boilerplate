@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate",
+  "name": "boilerplate-v2",
   "version": "1.0.0",
   "description": "Using Gulp makes easy way to create web",
   "main": "gulpfile.js",
@@ -8,9 +8,10 @@
     "watch": "npx gulp watch",
     "build": "npx gulp build",
     "build/img": "npx gulp buildimg",
-    "reset": "npx gulp reset",
-    "reset/img": "npx gulp resetimg"
+    "reset": "npx gulp clean",
+    "reset/img": "npx gulp cleanImg"
   },
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/Minaki-web/boilerplate"
@@ -18,11 +19,10 @@
   "author": "Minaki-web",
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.3.5",
     "browser-sync": "^2.27.5",
-    "cssnano": "^5.0.6",
+    "cssnano": "^5.0.8",
     "del": "^6.0.0",
-    "fibers": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-changed": "^4.0.3",
     "gulp-concat": "^2.6.1",
@@ -30,15 +30,14 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^4.0.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^9.0.0",
+    "gulp-postcss": "^9.0.1",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
-    "gulp-replace": "^1.1.3",
     "gulp-sass": "^5.0.0",
     "gulp-terser": "^2.0.1",
     "imagemin-pngquant": "^9.0.2",
-    "postcss": "^8.3.5",
-    "postcss-sort-media-queries": "^3.11.12",
+    "postcss": "^8.3.7",
+    "postcss-sort-media-queries": "^4.1.0",
     "sass": "^1.42.1"
   },
   "browserslist": [
