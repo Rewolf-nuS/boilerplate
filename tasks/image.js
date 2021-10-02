@@ -8,7 +8,7 @@ const path = require('./path');
 
 const imgTask = () => {
   return src(path.src.img)
-    .pipe(changed(path.src.img))
+    .pipe(changed(path.dist.img))
     .pipe(
       imagemin([
         pngquant({
