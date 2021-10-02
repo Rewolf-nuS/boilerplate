@@ -10,7 +10,7 @@ const path = require('./path');
 
 const jsTask = () => {
   return src(path.src.js, { sourcemaps: true })
-    .pipe(changed('dist/js'))
+    .pipe(changed(path.dist.js))
     .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     .pipe(concat('main.js'))
     .pipe(terser())
