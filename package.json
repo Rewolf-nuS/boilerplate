@@ -7,9 +7,9 @@
     "start": "npx gulp",
     "watch": "npx gulp watch",
     "build": "npx gulp build",
-    "build/img": "npx gulp buildimg",
+    "build:img": "npx gulp buildimg",
     "reset": "npx gulp clean",
-    "reset/img": "npx gulp cleanImg"
+    "reset:img": "npx gulp cleanImg"
   },
   "keywords": [],
   "repository": {

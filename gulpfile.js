@@ -22,10 +22,10 @@ const serveTask = (done) => {
 };
 
 const watchTask = (done) => {
-  watch(path.src.pug[0], series(pugTask));
-  watch(path.src.scss, series(scssTask));
-  watch(path.src.js, series(jsTask));
-  watch(path.src.img, series(imgTask));
+  watch(path.src.pug[0], pugTask);
+  watch(path.src.scss, scssTask);
+  watch(path.src.js, jsTask);
+  watch(['src/*.*'], copyFile);
 
   done();
 };
