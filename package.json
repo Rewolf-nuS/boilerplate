@@ -1,17 +1,17 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "description": "Using Gulp makes easy way to create web",
+  "description": "Using Gulp for making website",
   "main": "gulpfile.js",
   "scripts": {
     "start": "npx gulp",
     "watch": "npx gulp watch",
     "build": "npx gulp build",
     "build:img": "npx gulp buildimg",
-    "reset": "npx gulp clean",
-    "reset:img": "npx gulp cleanImg"
+    "reset": "npx gulp reset",
+    "reset:img": "npx gulp resetImg"
   },
-  "keywords": [],
+  "keywords": ["bolerplate", "pug", "sass"],
   "repository": {
     "type": "git",
     "url": "https://github.com/Minaki-web/boilerplate"

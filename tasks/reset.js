@@ -2,21 +2,21 @@ const del = require('del');
 
 const path = require('./path');
 
-const cleanFolder = (done) => {
+const resetFolder = (done) => {
   del.sync(['dist/**']);
   done();
 };
 
-const cleanImg = (done) => {
+const resetImg = (done) => {
   del.sync([path.dist.img]);
   done();
 };
 
-const cleanMap = (done) => {
+const resetMap = (done) => {
   del.sync(['./dist/**/*.map']);
   done();
 };
 
-exports.cleanFolder = cleanFolder;
-exports.cleanImg = cleanImg;
-exports.cleanMap = cleanMap;
+exports.resetFolder = resetFolder;
+exports.resetImg = resetImg;
+exports.resetMap = resetMap;

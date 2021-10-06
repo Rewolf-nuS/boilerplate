@@ -5,7 +5,7 @@ const { scssTask } = require('./tasks/scss');
 const { jsTask } = require('./tasks/javascript');
 const { imgTask } = require('./tasks/image');
 const { copyFile } = require('./tasks/copyFile');
-const { cleanImg, cleanFolder, cleanMap } = require('./tasks/clean');
+const { resetImg, resetFolder, resetMap } = require('./tasks/reset');
 
 const path = require('./tasks/path.js');
 
@@ -32,7 +32,7 @@ const watchTask = (done) => {
 
 exports.default = series(parallel(copyFile, pugTask, jsTask, scssTask), serveTask, watchTask);
 exports.watch = series(serveTask, watchTask);
-exports.build = series(cleanFolder, parallel(copyFile, pugTask, scssTask, jsTask, imgTask), cleanMap);
+exports.build = series(resetFolder, parallel(copyFile, pugTask, scssTask, jsTask, imgTask), resetMap);
 exports.buildimg = imgTask;
-exports.clean = cleanFolder;
-exports.cleanImg = cleanImg;
+exports.reset = resetFolder;
+exports.resetImg = resetImg;
