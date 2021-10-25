@@ -1,4 +1,3 @@
-@use '../setting' as s;
 @use '../helpers' as h;
 
 html {
@@ -6,8 +5,8 @@ html {
 }
 
 body {
-  font-family: s.$font-family;
+  font-family: h.$font-family;
   font-weight: 500;
   font-size: h.rem(16);
-  color: s.$primary-color;
+  color: h.$primary-color;
 }
